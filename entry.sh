@@ -1,6 +1,8 @@
 #!/bin/bash
 
-for i in range(10):
-	 print("Hello ")
+import time
 
+while 1:
+      print("Hello ")
+      time.sleep(1)
 	 
