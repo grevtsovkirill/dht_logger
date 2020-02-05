@@ -2,9 +2,9 @@
 
 import time
 import adafruit_dht
-from board import 4
+import board 
 
-dht_device = adafruit_dht.DHT11(4)
+dht_device = adafruit_dht.DHT11(board.D4)
 
 
 while 1:
