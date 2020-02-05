@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -yq \
 #RUN pip install w1thermsensor
 RUN pip install adafruit-circuitpython-dht
 RUN pip install RPi.GPIO
+RUN apt-get install libgpiod2
 
 # Defines our working directory in container
 
