@@ -2,6 +2,7 @@ FROM balenalib/%%BALENA_MACHINE_NAME%%-python:3-build
 
 RUN apt-get update && apt-get install -yq \
   python3 \
+  libgpiod2 \
   wget && \
   apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -10,7 +11,8 @@ RUN apt-get update && apt-get install -yq \
 #RUN pip install w1thermsensor
 RUN pip install adafruit-circuitpython-dht
 RUN pip install RPi.GPIO
-RUN apt-get install libgpiod2
+RUN pip install adafruit-blinka
+
 
 # Defines our working directory in container
 
