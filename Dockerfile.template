@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -yq \
 
 #RUN install_packages python-pip3
 
-#RUN pip install w1thermsensor
+RUN pip install w1thermsensor
 RUN pip install adafruit-circuitpython-dht
 RUN pip install RPi.GPIO
 RUN pip install adafruit-blinka
