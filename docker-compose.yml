@@ -8,3 +8,8 @@ services:
     restart: always
     volumes:
       - 'home-data:/data'
+  influxdb:
+    restart: always
+    build: ./influxdb
+    volumes:
+      - 'home-data:/data'
