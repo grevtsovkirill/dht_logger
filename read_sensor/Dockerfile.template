@@ -12,5 +12,5 @@ RUN pip install RPi.GPIO
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 
-#CMD dtoverlay w1-gpio gpiopin=4 
-CMD ["python3", "/usr/src/app/w1.py"]
+#CMD ["python3", "/usr/src/app/w1.py"]
+CMD ["python3", "/usr/src/app/driver.py"]
