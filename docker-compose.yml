@@ -1,0 +1,10 @@
+version: '2'
+volumes:
+    home-data:
+services:
+  read_sensor:
+    build: ./read_sensor
+    privileged: true
+    restart: always
+    volumes:
+      - 'home-data:/data'
