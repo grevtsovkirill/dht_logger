@@ -4,6 +4,7 @@ import threading
 import io
 import time
 import datetime
+import os
 
 from w1thermsensor import W1ThermSensor
 
