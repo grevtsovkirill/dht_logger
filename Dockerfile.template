@@ -6,21 +6,11 @@ RUN apt-get update && apt-get install -yq \
   wget && \
   apt-get clean && rm -rf /var/lib/apt/lists/*
 
-#RUN install_packages python-pip3
-
 RUN pip install w1thermsensor
-RUN pip install adafruit-circuitpython-dht
 RUN pip install RPi.GPIO
-RUN pip install adafruit-blinka
 
-
-# Defines our working directory in container
-
-# This will copy all files in our root to the working  directory in the container
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 
-
-#COPY ./entry.sh /usr/src/app/
-#RUN chmod +x /usr/src/app/entry.sh
-CMD ["python3", "/usr/src/app/entry.sh"]
+#CMD dtoverlay w1-gpio gpiopin=4 
+CMD ["python3", "/usr/src/app/w1.py"]
