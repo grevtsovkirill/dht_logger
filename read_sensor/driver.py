@@ -35,7 +35,7 @@ rd = read_data()
 while True:
     #measurements = rd.sample()
     #print(measurements[0]['fields'])
-    server_address = ('', 80)
+    server_address = ('http://192.168.0.10', 80)
     httpd = HTTPServer(server_address, homeDataHTTP)
     print('Sensor HTTP server running')
     httpd.serve_forever()
