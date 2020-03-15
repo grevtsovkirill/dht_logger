@@ -7,15 +7,20 @@ To run; ./run_w1
 #include <iostream>
 #include <string>
 #include "DS18B20.h"
+#include <ctime>
 using namespace std;
 
 int main() {
     double tempNow;
     char w1_address[16]="28-00000484b7e5";
+
+
     DS18B20 w1Device1 (w1_address);
     tempNow = w1Device1.getTemp();
 
-    cout << "T=" << tempNow << " C" <<endl;
+    time_t now = time(0);
+    char* dt = ctime(&now);
+    cout <<dt<<   " T=" << tempNow << " C" <<endl;
 
     return 0;
 }
