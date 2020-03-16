@@ -12,7 +12,7 @@ from w1thermsensor import W1ThermSensor
 parser = argparse.ArgumentParser(description='Upload data from sensor')
 parser.add_argument('--wait', required=False, default=0, type=int, help='Second to wait after opening the connection')
 parser.add_argument('--token', required=True, type=str, help='Your InfluxDB REST token. This argument is required.')
-parser.add_argument('--org', required=False, type=str, default="grevtsovkirill@influxdata.com", help='Your InfluxDB organization name. This argument is required.')
+parser.add_argument('--org', required=False, type=str, default="grevtsovkirill@gmail.com", help='Your InfluxDB organization name. This argument is required.')
 parser.add_argument('--url', required=False, type=str, default="https://us-west-2-1.aws.cloud2.influxdata.com/", help="defaults to Cloud 2")
 parser.add_argument('--bucket', required=False, type=str, default="home_service", help="the bucket to write to") 
 args = parser.parse_args()
