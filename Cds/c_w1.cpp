@@ -23,7 +23,7 @@ int main() {
       time_t now = time(0);
       char* dt = ctime(&now);
       cout <<dt<<   " T=" << tempNow << " C" <<endl;
-      this_thread::sleep_for(std::chrono::seconds(5));
+      this_thread::sleep_for(std::chrono::seconds(60));
     }
 
 }
