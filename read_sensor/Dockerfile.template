@@ -1,0 +1,16 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-python:3-build 
+
+RUN apt-get update && apt-get install -yq \
+  python3 \
+  libgpiod2 \
+  wget && \
+  apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN pip install w1thermsensor
+RUN pip install RPi.GPIO
+
+COPY . /usr/src/app
+WORKDIR /usr/src/app
+
+#CMD ["python3", "/usr/src/app/w1.py"]
+CMD ["python3", "/usr/src/app/driver.py"]
