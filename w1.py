@@ -8,6 +8,7 @@ import argparse
 import requests
 
 from w1thermsensor import W1ThermSensor
+from  w1_sql import *
 
 parser = argparse.ArgumentParser(description='Upload data from sensor')
 parser.add_argument('--wait', required=False, default=0, type=int, help='Second to wait after opening the connection')
@@ -52,5 +53,8 @@ while True:
     value=current_temperature
     line=get_line_protocol(sens, reading, value)
     send_line(line)
+    dt = int(datetime.datetime.now().timestamp())
+    dt_object = datetime.datetime.fromtimestamp(dt) 
+    add_readings(sens, reading, value, dt_object)
     time.sleep(5)
 
