@@ -57,4 +57,3 @@ while True:
     dt_object = datetime.datetime.fromtimestamp(dt) 
     add_readings(sens, reading, value, dt_object)
     time.sleep(5)
-
