@@ -14,9 +14,11 @@ def add_readings(sensor, reading, value, timestamp):
     """
     values = (sensor, reading, value, timestamp)
     cur.execute(query, values)
-#dt = int(datetime.datetime.now().timestamp())
+    conn.commit()
+    
+dt = int(datetime.datetime.now().timestamp())
 #print(dt)
-#dt_object = datetime.datetime.fromtimestamp(dt)
+dt_object = datetime.datetime.fromtimestamp(dt)
 #print("dt_object =", dt_object)
 #add_readings('DS18B20', 'T', 18.75,  dt_object)    
 
@@ -25,3 +27,8 @@ def print_table():
     results = cur.fetchall()       
     for result in results:
         print(result)
+
+
+#print_table()
+#cur.close()
+#conn.close()
