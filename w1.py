@@ -36,7 +36,8 @@ def send_line(line):
         url = "{}api/v2/write?org={}&bucket={}&precision={}".format(influx_url, organization, bucket, precision)
         headers = {"Authorization": "Token {}".format(influx_token)}
         r = requests.post(url, data=line, headers=headers)
-        print(line)
+        # no need to print, as run in the background
+        #print(line)
     except:
         # this is terrible
 	# any time there is a problem with the server, data will be lost
