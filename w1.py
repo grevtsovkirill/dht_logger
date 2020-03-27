@@ -10,7 +10,7 @@ import requests
 from w1thermsensor import W1ThermSensor
 from  w1_sql import *
 from user_info import *
-
+from outside_T import *
 
 parser = argparse.ArgumentParser(description='Upload data from sensor')
 parser.add_argument('--debug', required=False, default=False, type=bool, help='For local checks ')
@@ -57,7 +57,11 @@ while True:
     sens, reading, value = get_out_bedroom_reading()
     line=get_line_protocol(sens, reading, value)
     send_line(line)
-    
+    for i in read_types:
+        sens, reading, value = get_out_reading(i)
+        line=get_line_protocol(sens, reading, value)
+        send_line(line)
+        
     dt = int(datetime.datetime.now().timestamp())
     dt_object = datetime.datetime.fromtimestamp(dt) 
     #add_readings(sens, reading, value, dt_object)
