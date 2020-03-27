@@ -2,10 +2,32 @@
 
 
 ## Analysis of temperature level remotely
-Aim to monitor and analyse the reasings from the sensor using cloud solutions.
+Aim to monitor and analyse the temperature, humidity and pressure measurements in the appartment and outside.
+Provide visualization of the data directly from the cloud based DB.
 
 
 ### Setup
+RaspberryPi used as main station to collect information from various sources.
+For indoors measurements it reads signal directly from the connected sensor.
+For outdoor data API of openweathermap.org is used.
+
+### Features
+#### Interactive dashboard:
+Dashboar is hosted at InfluxData Cloud. It provides change of measurements in last 24 hours, for indoor temperature it shows minimal/maximal temperature over period and gauge with current value. For outdoor measurements temperature, humidity and pressure are presented:
+
+![alt text](https://github.com/grevtsovkirill/dht_logger/blob/master/helpers/RDMPlots/t_dash.png)
+
+#### Local copy of SQL database:
+It's convenient to have online dashboard for monitoring and service for alerting, but it is essential to keep data.
+Storage realised using reliable and fast relational database management system PostgreSQL.
+
+#### Monitoring & Alerting:
+Different notification levels from Ok to Critical are set with corresponding measurement thresholds.
+Notifiactions are transmitted to slack, using webhooks:
+![alt text](https://github.com/grevtsovkirill/dht_logger/blob/master/helpers/RDMPlots/slack_integration.png)
+
+
+### Techinical details of setup
 Setup includes RaspberryPi running with Raspbian 10 (buster), reading temerature measurement sensor DS18B20.
 Uses libraries ```w1thermsensor``` and writhe data to ```InfluxDBCloud```.
 
@@ -17,17 +39,3 @@ Run the code as daemon:
  - start the deamon: ```sudo systemctl start logger.service ```
  - check the status: ```sudo systemctl status logger.service ```
 
-
-### Features
-#### Interactive dashboard:
-In the cloud, dashboars if created to monitor historical data in last 24 hours, shows minimal and maximal temperature and provide gauge with current measurements:
-![alt text](https://github.com/grevtsovkirill/dht_logger/blob/master/helpers/RDMPlots/t_dash.png)
-
-#### Monitoring & Alerting:
-Different notification levels from Ok to Critical are set with corresponding measurement thresholds.
-Notifiactions are transmitted to slack, using webhooks:
-![alt text](https://github.com/grevtsovkirill/dht_logger/blob/master/helpers/RDMPlots/slack_integration.png)
-
-#### Local copy of SQL database:
-It's convenient to have online dashboard for monitoring and service for alerting, but it is essential to keep data.
-Storage realised using reliable and fast relational database management system PostgreSQL.
