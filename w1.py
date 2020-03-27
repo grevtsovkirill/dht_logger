@@ -41,19 +41,17 @@ def send_line(line):
         # no need to print, as run in the background
         #print(line)
     except:
-        # this is terrible
-	# any time there is a problem with the server, data will be lost
-	# this is a job for Telegraf
         print("oops")
         
-              
-sensor = W1ThermSensor()
+def get_out_bedroom_reading():
+        sensor = W1ThermSensor()
+        current_temperature=sensor.get_temperature()
+        sens='DS18B20'
+        reading='T_bedroom'
+        return sens,reading,current_temperature
+        
 while True:
-    current_temperature=sensor.get_temperature()
-    #print(datetime.datetime.now(), "\t",current_temperature)
-    sens='DS18B20'
-    reading='T'
-    value=current_temperature
+    sens, reading, value = get_out_bedroom_reading()
     line=get_line_protocol(sens, reading, value)
     send_line(line)
     dt = int(datetime.datetime.now().timestamp())
