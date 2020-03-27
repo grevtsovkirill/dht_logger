@@ -8,7 +8,7 @@ import argparse
 import requests
 
 from w1thermsensor import W1ThermSensor
-from  w1_sql import *
+from fill_sql w1_sql import *
 from user_info import *
 from outside_T import *
 
@@ -64,5 +64,5 @@ while True:
         
     dt = int(datetime.datetime.now().timestamp())
     dt_object = datetime.datetime.fromtimestamp(dt) 
-    #add_readings(sens, reading, value, dt_object)
+    add_readings(sens, reading, value, dt_object)
     time.sleep(5)

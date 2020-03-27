@@ -9,13 +9,13 @@ Aim to monitor and analyse the reasings from the sensor using cloud solutions.
 Setup includes RaspberryPi running with Raspbian 10 (buster), reading temerature measurement sensor DS18B20.
 Uses libraries ```w1thermsensor``` and writhe data to ```InfluxDBCloud```.
 
-Make a local backup to the PostrgeSQL database (```w1_sql.py```).
+Make a local backup to the PostrgeSQL database (```fill_sql.py```).
 
 Run the code as daemon:
- - copy ```w1.service``` to the ```/etc/systemd/system/```
+ - copy ```logger.service``` to the ```/etc/systemd/system/```
  - update the ```systemd``` units with ```sudo systemctl daemon-reload```
- - start the deamon: ```sudo systemctl start w1.service ```
- - check the status: ```sudo systemctl status w1.service ```
+ - start the deamon: ```sudo systemctl start logger.service ```
+ - check the status: ```sudo systemctl status logger.service ```
 
 
 ### Features
