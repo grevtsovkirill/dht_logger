@@ -13,7 +13,7 @@ Make a local backup to the PostrgeSQL database (```fill_sql.py```).
 
 Run the code as daemon:
  - copy ```logger.service``` to the ```/etc/systemd/system/```
- - update the ```systemd``` units with ```sudo systemctl daemon-reload```
+ - update the ```systemd``` units with ```sudo systemctl daemon-reload``` and reload ```systemctl enable logger.service```
  - start the deamon: ```sudo systemctl start logger.service ```
  - check the status: ```sudo systemctl status logger.service ```
 
