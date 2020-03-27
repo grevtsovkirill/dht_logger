@@ -32,3 +32,6 @@ def print_table():
 #print_table()
 #cur.close()
 #conn.close()
+
+if __name__== "__main__":
+    print_table()
