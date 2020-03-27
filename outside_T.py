@@ -26,10 +26,9 @@ def main():
     weather = request_data()
     #for key in weather['main']:
     #    print (key," = ",weather['main'][key] )
-
     read_types = ['temp','pressure','humidity']
     for i in read_types:
-        get_out_reading(i)
+        print(get_out_reading(i))
 
 if __name__== "__main__":
   main()    
