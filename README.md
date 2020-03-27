@@ -15,7 +15,7 @@ For outdoor data API of openweathermap.org is used.
 #### Interactive dashboard:
 Dashboar is hosted at InfluxData Cloud. It provides change of measurements in last 24 hours, for indoor temperature it shows minimal/maximal temperature over period and gauge with current value. For outdoor measurements temperature, humidity and pressure are presented:
 
-![alt text](https://github.com/grevtsovkirill/dht_logger/blob/master/helpers/RDMPlots/t_dash.png)
+![alt text](https://github.com/grevtsovkirill/dht_logger/blob/master/helpers/RDMPlots/dashboard.png)
 
 #### Local copy of SQL database:
 It's convenient to have online dashboard for monitoring and service for alerting, but it is essential to keep data.
@@ -24,6 +24,7 @@ Storage realised using reliable and fast relational database management system P
 #### Monitoring & Alerting:
 Different notification levels from Ok to Critical are set with corresponding measurement thresholds.
 Notifiactions are transmitted to slack, using webhooks:
+
 ![alt text](https://github.com/grevtsovkirill/dht_logger/blob/master/helpers/RDMPlots/slack_integration.png)
 
 
