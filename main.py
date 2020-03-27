@@ -8,7 +8,7 @@ import argparse
 import requests
 
 from w1thermsensor import W1ThermSensor
-from fill_sql w1_sql import *
+from fill_sql import *
 from user_info import *
 from outside_T import *
 
@@ -30,9 +30,12 @@ bucket = vars(args)["bucket"]
 precision = "ms"
 
 def get_line_protocol(sensor, reading, value):
-	line = "{} {}={} {}"
-	timestamp = str(int(datetime.datetime.now().timestamp() * 1000))
-	return line.format(sensor, reading, value, timestamp)
+        line = "{} {}={} {}"
+        timestamp = str(int(datetime.datetime.now().timestamp()*1000))
+        dt = int(datetime.datetime.now().timestamp())
+        dt_object = datetime.datetime.fromtimestamp(dt) 
+        add_readings(sensor, reading, value, dt_object)
+        return line.format(sensor, reading, value, timestamp)
 
 
 def send_line(line):
@@ -40,13 +43,13 @@ def send_line(line):
         url = "{}api/v2/write?org={}&bucket={}&precision={}".format(influx_url, organization, bucket, precision)
         headers = {"Authorization": "Token {}".format(influx_token)}
         r = requests.post(url, data=line, headers=headers)
-        # no need to print, as run in the background
+
         if debug:
                 print(line)
     except:
         print("oops")
         
-def get_out_bedroom_reading():
+def get_bedroom_reading():
         sensor = W1ThermSensor()
         current_temperature=sensor.get_temperature()
         sens='DS18B20'
@@ -54,7 +57,7 @@ def get_out_bedroom_reading():
         return sens,reading,current_temperature
         
 while True:
-    sens, reading, value = get_out_bedroom_reading()
+    sens, reading, value = get_bedroom_reading()
     line=get_line_protocol(sens, reading, value)
     send_line(line)
     for i in read_types:
@@ -62,7 +65,4 @@ while True:
         line=get_line_protocol(sens, reading, value)
         send_line(line)
         
-    dt = int(datetime.datetime.now().timestamp())
-    dt_object = datetime.datetime.fromtimestamp(dt) 
-    add_readings(sens, reading, value, dt_object)
     time.sleep(5)
