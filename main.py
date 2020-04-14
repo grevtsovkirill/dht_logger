@@ -18,6 +18,7 @@ parser.add_argument('--token', required=True, type=str, help='Your InfluxDB REST
 #parser.add_argument('--org', required=False, type=str, default="your@mail.com", help='Your InfluxDB organization name. This argument is required.')
 parser.add_argument('--url', required=False, type=str, default="https://us-west-2-1.aws.cloud2.influxdata.com/", help="defaults to Cloud 2")
 parser.add_argument('--bucket', required=False, type=str, default="home_service", help="the bucket to write to") 
+parser.add_argument('--delay', required=False, type=float, default=20, help="Delay between readings") 
 args = parser.parse_args()
 
 
@@ -27,6 +28,7 @@ influx_token = vars(args)["token"]
 #organization = vars(args)["org"]
 organization = infl_org
 bucket = vars(args)["bucket"]
+delay = vars(args)["delay"]
 precision = "ms"
 
 def get_line_protocol(sensor, reading, value):
@@ -65,4 +67,4 @@ while True:
         line=get_line_protocol(sens, reading, value)
         send_line(line)
         
-    time.sleep(5)
+    time.sleep(delay)
