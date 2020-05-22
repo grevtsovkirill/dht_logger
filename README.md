@@ -27,12 +27,14 @@ Notifiactions are transmitted to slack, using webhooks:
 
 ![alt text](https://github.com/grevtsovkirill/dht_logger/blob/master/helpers/RDMPlots/slack_integration.png)
 
+### Saving info to database
+Make a local backup to the PostrgeSQL database (```fill_sql.py```).
 
 ### Techinical details of setup
 Setup includes RaspberryPi running with Raspbian 10 (buster), reading temerature measurement sensor DS18B20.
 Uses libraries ```w1thermsensor``` and writhe data to ```InfluxDBCloud```.
 
-Make a local backup to the PostrgeSQL database (```fill_sql.py```).
+
 
 Run the code as daemon:
  - copy ```logger.service``` from ```helpers``` to the ```/etc/systemd/system/```
@@ -44,6 +46,8 @@ Code to read sensor data with Arduino and transmit it to BT can be found at:
 ```
 helpers/arduino_data/arduino_data.ino
 ```
+Complete info at:
+```https://github.com/grevtsovkirill/dht_logger/wiki```
 
 Description of setting up BT on RPi can be found in twiki:
-https://github.com/grevtsovkirill/dht_logger.wiki.git
+```https://github.com/grevtsovkirill/dht_logger/wiki/Connect-arduino-via-BT```
