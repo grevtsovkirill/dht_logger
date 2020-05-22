@@ -2,7 +2,7 @@
 
 from urllib.request import urlopen
 import json
-from user_info import *
+from dht_logger import user_info
 
 sens = 'OpenWeather'
 measurement_dict = {'temp':'T_out','pressure':'P_out','humidity':'H_out'}
@@ -11,9 +11,9 @@ read_types = ['temp','pressure','humidity']
 def request_data():
     input_type = "latlon"
     if input_type is "id":
-        url="http://api.openweathermap.org/data/2.5/weather?id="+str(city_id)+"&APPID="+apikey
+        url="http://api.openweathermap.org/data/2.5/weather?id="+str(user_info.city_id)+"&APPID="+user_info.apikey
     elif input_type is "latlon":
-        url="http://api.openweathermap.org/data/2.5/weather?lat="+str(lat)+"&lon="+str(lon)+"&APPID="+apikey+"&units=metric"
+        url="http://api.openweathermap.org/data/2.5/weather?lat="+str(user_info.lat)+"&lon="+str(user_info.lon)+"&APPID="+user_info.apikey+"&units=metric"
         #print(url)
         meteo=urlopen(url).read()
         meteo = meteo.decode('utf-8')
