@@ -11,6 +11,7 @@ from w1thermsensor import W1ThermSensor
 from dht_logger import fill_sql
 from dht_logger import user_info
 from dht_logger import outside_T
+from dht_logger import btsr
 
 parser = argparse.ArgumentParser(description='Upload data from sensor')
 parser.add_argument('--debug', required=False, default=False, type=bool, help='For local checks ')
@@ -66,4 +67,10 @@ while True:
         sens, reading, value = outside_T.get_out_reading(i)
         line=get_line_protocol(sens, reading, value)
         send_line(line)
+
+    for i in btsr.read_types:
+        sens, reading, value = btsr.get_bt_reading(i)
+        line=get_line_protocol(sens, reading, value)
+        send_line(line)
+
     time.sleep(delay)
