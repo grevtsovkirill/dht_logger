@@ -11,7 +11,8 @@ from w1thermsensor import W1ThermSensor
 from dht_logger import fill_sql
 from dht_logger import user_info
 from dht_logger import outside_T
-from dht_logger import btsr
+from dht_logger import bmp280
+#from dht_logger import btsr
 
 parser = argparse.ArgumentParser(description='Upload data from sensor')
 parser.add_argument('--debug', required=False, default=False, type=bool, help='For local checks ')
@@ -68,9 +69,14 @@ while True:
         line=get_line_protocol(sens, reading, value)
         send_line(line)
 
-    for i in btsr.read_types:
-        sens, reading, value = btsr.get_bt_reading(i)
+    for i in bmp280.read_types:
+        sens, reading, value = bmp280.get_bmp_reading(i)
         line=get_line_protocol(sens, reading, value)
         send_line(line)
+
+    # for i in btsr.read_types:
+    #     sens, reading, value = btsr.get_bt_reading(i)
+    #     line=get_line_protocol(sens, reading, value)
+    #     send_line(line)
 
     time.sleep(delay)
