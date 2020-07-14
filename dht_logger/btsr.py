@@ -7,7 +7,7 @@ read_types = ['Temperature','Humidity']
 
 ser = serial.Serial(
     
-    port='/dev/rfcomm0',
+    port='/dev/rfcomm1',
     baudrate = 9600,
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
@@ -21,6 +21,7 @@ ser = serial.Serial(
 
 def get_sp_data(read_type):
     #x=''
+    timeout = time.time() + 10
     while 1:
         x=str(ser.readline())
         if read_type in x:
@@ -28,6 +29,8 @@ def get_sp_data(read_type):
             z=x[y:y+5]
             #print(z)
             return z
+            break
+        elif time.time() > timeout:
             break
 
 def get_bt_reading(read_type):
