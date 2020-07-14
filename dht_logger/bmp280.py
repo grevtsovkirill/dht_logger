@@ -18,7 +18,6 @@ def main():
     print(data.temperature)
     print(data.pressure)
     print(data.humidity)
-    print(data)
 
 if __name__== "__main__":
   main()    
